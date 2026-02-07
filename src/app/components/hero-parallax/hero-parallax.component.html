@@ -1,1 +1,43 @@
-<p>hero-parallax works!</p>
+<div class="relative h-[220vh] bg-black text-white overflow-x-hidden font-mono">
+    <div class="fixed inset-0 opacity-20" [style.transform]="t(0.1)" style="
+      background-image: radial-gradient(#1f2937 1px, transparent 1px);
+      background-size: 40px 40px;">
+    </div>
+
+    <div class="fixed inset-0 opacity-10 mix-blend-screen" [style.transform]="t(0.2)" style="
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        #0f172a 3px
+      );">
+    </div>
+
+    <div class="fixed inset-10 opacity-10 mix-blend-screen" [style.transform]="t(0.35)"
+        style="background-image:url('/images/code.jpg'); background-size:cover;">
+    </div>
+    <div class="fixed inset-0 flex flex-col items-center justify-center text-center" [style.transform]="t(0.55)">
+
+        <h1 class="text-5xl md:text-7xl tracking-[0.4em] uppercase font-bold
+             animate-[fadeIn_1.8s_ease-out] relative">
+
+            YIGAEL BALDERRAMA
+            <span class="absolute inset-0 text-cyan-400 opacity-20 blur-[1px]
+               group-hover:translate-x-1 transition">
+                YIGAEL BALDERRAMA
+            </span>
+        </h1>
+
+        <div class="mt-6 text-xl text-gray-400 tracking-[0.3em]">
+            DEVELOPER | ENGINEER | PROBLEM SOLVER
+        </div>
+
+        <div class="mt-4 text-sm text-gray-600 tracking-[0.5em]">
+            DIAGNOSING SOFTWARE SYSTEMS
+        </div>
+        <div class="mt-10 w-72 h-[2px] bg-gradient-to-r from-transparent via-green-400 to-transparent animate-pulse">
+        </div>
+
+    </div>
+
+</div>
