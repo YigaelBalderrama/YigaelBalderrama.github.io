@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 430" role="img" aria-labelledby="title desc">
   <title id="title">ACM International Collegiate Programming Contest logo</title>
-  <desc id="desc">ACM ICPC logo recolored red on a black background</desc>
-  <rect width="510" height="430" fill="#000000" />
+  <desc id="desc">ACM ICPC logo in red on a transparent background</desc>
   <g fill="none" stroke="#D90B1C" stroke-linecap="round" stroke-linejoin="round">
     <path stroke-width="12" d="M35 160c-25-8-28-47 5-57-2-38 51-50 72-19 29-28 78-1 69 38 31 17 15 59-15 59H61c-19 0-33-8-26-21z" />
     <circle cx="39" cy="198" r="7" stroke-width="6" />
