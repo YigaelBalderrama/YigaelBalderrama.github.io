@@ -1,43 +1,233 @@
-<div class="relative h-[220vh] bg-black text-white overflow-x-hidden font-mono">
-    <div class="fixed inset-0 opacity-20" [style.transform]="t(0.1)" style="
-      background-image: radial-gradient(#1f2937 1px, transparent 1px);
-      background-size: 40px 40px;">
-    </div>
-
-    <div class="fixed inset-0 opacity-10 mix-blend-screen" [style.transform]="t(0.2)" style="
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 2px,
-        #0f172a 3px
-      );">
-    </div>
-
-    <div class="fixed inset-10 opacity-10 mix-blend-screen" [style.transform]="t(0.15)"
-        style="background-image:url('/images/code.jpg'); background-size:cover;">
-    </div>
-    <div class="fixed inset-0 flex flex-col items-center justify-center text-center" [style.transform]="t(0.55)">
-
-        <h1 class="text-5xl md:text-7xl tracking-[0.4em] uppercase font-bold
-             animate-[fadeIn_1.8s_ease-out] relative">
-
-            YIGAEL BALDERRAMA
-            <span class="absolute inset-0 text-cyan-400 opacity-20 blur-[1px]
-               group-hover:translate-x-1 transition">
-                YIGAEL BALDERRAMA
-            </span>
-        </h1>
-
-        <div class="mt-6 text-xl text-gray-400 tracking-[0.3em]">
-            DEVELOPER | ENGINEER | PROBLEM SOLVER
-        </div>
-
-        <div class="mt-4 text-sm text-gray-600 tracking-[0.5em]">
-            DIAGNOSING SOFTWARE SYSTEMS
-        </div>
-        <div class="mt-10 w-72 h-[2px] bg-gradient-to-r from-transparent via-red-400 to-transparent animate-pulse">
-        </div>
-
-    </div>
-
+<div class="portfolio-shell">
+    <div class="portfolio-grid" aria-hidden="true"></div>
+    <div class="portfolio-glow portfolio-glow--cyan" aria-hidden="true"></div>
+    <div class="portfolio-glow portfolio-glow--coral" aria-hidden="true"></div>
+    <header class="site-header">
+        <a class="site-header__brand" href="#home" (click)="scrollTo('home')" aria-label="Yigael Balderrama home"><span
+                class="site-header__mark">YB</span><span
+                class="site-header__brand-copy"><strong>Yigael</strong><small>Full stack developer</small></span></a>
+        <button class="site-header__menu" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()"
+            aria-label="Toggle navigation"><span></span><span></span></button>
+        <nav class="site-nav" [class.site-nav--open]="isMenuOpen()" aria-label="Primary navigation">
+            @for (item of [{id: 'about', label: 'About'}, {id: 'skills', label: 'Skills'}, {id: 'experience', label:
+            'Experience'}, {id: 'projects', label: 'Projects'}, {id: 'contact', label: 'Contact'}]; track item.id) {<a
+                [class.site-nav__link--active]="activeSection() === item.id" class="site-nav__link"
+                [class.portfolio-hidden]="item.id === 'projects'"
+                [href]="'#' + item.id" (click)="scrollTo(item.id)">{{ item.label }}</a>}
+        </nav>
+        <a class="button button--small site-header__cta" href="#contact" (click)="scrollTo('contact')">Let's talk <span
+                aria-hidden="true">↗</span></a>
+    </header>
+    <main>
+        <section class="hero section-wrap" id="home">
+            <div class="hero__backdrop" [style.transform]="'translate3d(0, ' + heroOffset() + 'px, 0)'"
+                aria-hidden="true">
+                <div class="hero__code hero__code--one">F(n) = M^n[0][1]<br />// matrix exponentiation / C++</div>
+                <div class="hero__code hero__code--two">GET /hello<br />200 OK · .NET</div>
+                <div class="hero__orb hero__orb--one"></div>
+                <div class="hero__orb hero__orb--two"></div>
+            </div>
+            <div class="hero__content reveal">
+                <p class="eyebrow"><span class="eyebrow__line"></span> Available for meaningful work <span
+                        class="eyebrow__dot"></span></p>
+                <h1 class="hero__title"><span class="hero__title-first-name">Yigael Alejandro</span><br /><span
+                        class="hero__title-last-name">Balderrama Barriga</span></h1>
+                <p class="hero__role">Full Stack Software Developer</p>
+                <p class="hero__intro">I build scalable, maintainable and user-centered web applications using Angular,
+                    .NET, Python, React, Node.js and modern AI-assisted development workflows.</p>
+                <div class="hero__actions"><a class="button button--primary" href="#experience"
+                        (click)="scrollTo('experience')">View experience <span aria-hidden="true">↘</span></a><a
+                        class="button button--ghost portfolio-hidden" href="#projects" (click)="scrollTo('projects')">View projects <span
+                            aria-hidden="true">↗</span></a></div>
+                <div class="hero__meta"><span><i class="status-dot"></i> Bolivia</span><span
+                        class="language-badge">English · Español</span><span>Scroll to explore ↓</span></div>
+            </div>
+            <figure class="hero__portrait reveal">
+                <div class="hero__portrait-frame">
+                    <img src="images/profile-photo.jpg" alt="Yigael Alejandro Balderrama Barriga" />
+                </div>
+                <figcaption>Full Stack Developer <span aria-hidden="true">/ 2026</span></figcaption>
+            </figure>
+            <div class="hero__signature" aria-hidden="true">01 / 09</div>
+        </section>
+        <section class="section section--about section-wrap reveal" id="about">
+            <div class="section-heading">
+                <p class="eyebrow">01 / Professional summary</p>
+                <h2>Engineering with<br /><em>intent.</em></h2>
+            </div>
+            <div class="about__content">
+                <p class="section-lead">A builder who cares about the invisible details: the architecture that lasts,
+                    the interaction that feels right, and the performance users never have to think about.</p>
+                <div class="summary-card"><span class="summary-card__number">/ 01</span>
+                    <p>Full Stack Developer with experience building scalable, high-performance web and mobile
+                        applications using Angular, .NET, Flutter, React, Node.js, Java and Spring Boot. Delivered
+                        production features and APIs across healthcare, academic, automation and enterprise platforms.
+                    </p>
+                    <p>Strong background in API design, clean architecture, UI/UX best practices, performance
+                        optimization and AI-assisted development workflows using Codex, Claude and Vercel Skills.
+                        Recognized for analytical problem-solving through ICPC achievements and large-scale data
+                        scraping automation.</p>
+                    <div class="summary-card__footer"><span>Angular</span><span>.NET</span><span>Python</span><span>AI
+                            workflows</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="section section--skills section-wrap reveal" id="skills">
+            <div class="section-heading section-heading--row">
+                <div>
+                    <p class="eyebrow">02 / Technical toolkit</p>
+                    <h2>Tools for the<br /><em>whole picture.</em></h2>
+                </div>
+                <p class="section-note">From pixels to persistence, I connect the layers that make software useful.</p>
+            </div>
+            <div class="skills-grid">@for (category of skillCategories; track category.name) {<article
+                    class="skill-card">
+                    <p class="skill-card__eyebrow">{{ category.eyebrow }}</p>
+                    <h3>{{ category.name }}</h3>
+                    <div class="skill-card__tags">@for (skill of category.skills; track skill) {<span>{{ skill
+                            }}</span>}</div>
+                </article>}</div>
+        </section>
+        <section class="section section--experience section-wrap reveal" id="experience">
+            <div class="section-heading section-heading--row">
+                <div>
+                    <p class="eyebrow">03 / Selected experience</p>
+                    <h2>Work that moves<br /><em>the needle.</em></h2>
+                </div>
+                <p class="section-note">A timeline of products, platforms and teams where thoughtful engineering became
+                    shipped software.</p>
+            </div>
+            <div class="timeline">@for (item of experience; track item.company + item.year; let index = $index) {
+                <article class="timeline__item">
+                    <div class="timeline__rail"><span>{{ (index + 1).toString().padStart(2, '0') }}</span></div>
+                    <div class="experience-card">
+                        <div class="experience-card__top">
+                            <p class="experience-card__year">{{ item.year }}</p>@if (item.startedFromScratch) {<span
+                                class="outline-badge">Built from zero</span>}
+                        </div>
+                        <h3>{{ item.role }}</h3>
+                        <p class="experience-card__company">{{ item.company }} <span>· {{ item.location }}</span></p>@if
+                        (item.client) {<p class="experience-card__client">Client: {{ item.client }}</p>}<div
+                            class="experience-card__tags">@for (technology of item.technologies; track technology)
+                            {<span>{{ technology }}</span>}</div>
+                        <ul>@for (bullet of item.bullets; track bullet) {<li>{{ bullet }}</li>}</ul>
+                    </div>
+                </article>}
+            </div>
+        </section>
+        <section class="section section--projects section-wrap reveal portfolio-hidden" id="projects">
+            <div class="section-heading">
+                <p class="eyebrow">04 / Personal projects</p>
+                <h2>Curiosity that<br /><em>ships.</em></h2>
+            </div>@for (project of projects; track project.title) {<article class="project-card">
+                <div class="project-card__visual"><span class="project-card__label">SPRING / 01</span>
+                    <div class="project-card__terminal"><span>&gt; architecture.describe()</span><strong>clean / modular
+                            / tested</strong><span>&gt; api.status()</span><strong class="accent-text">ready to
+                            scale_</strong></div>
+                </div>
+                <div class="project-card__body">
+                    <p class="eyebrow">{{ project.type }}</p>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <div class="project-card__tags">@for (technology of project.technologies; track technology)
+                        {<span>{{ technology }}</span>}</div>
+                    <div class="project-card__actions"><a class="button button--primary"
+                            [href]="project.projectUrl">View project <span aria-hidden="true">↗</span></a><a
+                            class="button button--ghost" [href]="project.codeUrl">View code <span
+                                aria-hidden="true">⌘</span></a></div>
+                </div>
+            </article>}
+        </section>
+        <section class="section section--credentials section-wrap reveal" id="education">
+            <div class="credentials-grid">
+                <div>
+                    <p class="eyebrow">05 / Education</p>
+                    <h2>Foundations<br /><em>matter.</em></h2>
+                    <div class="education-list">
+                        <article><span>2019 — 2023</span>
+                            <h3>Bachelor's Degree in Computer Science</h3>
+                            <p>Universidad Catolica Boliviana “San Pablo”</p>
+                        </article>
+                        <article><span>2017</span>
+                            <h3>High School Diploma</h3>
+                            <p>Loyola High School, Cochabamba</p>
+                        </article>
+                    </div>
+                </div>
+                <div id="certifications">
+                    <p class="eyebrow">06 / Certifications</p>
+                    <div class="certification-list">@for (certification of certifications; track certification.title) {
+                        @if (certification.url) {<a class="certification certification--linked"
+                            [class.certification--featured]="certification.featured" [href]="certification.url"
+                            target="_blank" rel="noopener noreferrer"
+                            [attr.aria-label]="'View ' + certification.title"><span>{{
+                                certification.year }}</span>
+                            <div>
+                                <h3>{{ certification.title }}</h3>
+                                <p>{{ certification.issuer }}</p>
+                            </div><b aria-hidden="true">↗</b>
+                        </a>} @else {<article class="certification"
+                            [class.certification--featured]="certification.featured"><span>{{ certification.year
+                                }}</span>
+                            <div>
+                                <h3>{{ certification.title }}</h3>
+                                <p>{{ certification.issuer }}</p>
+                            </div><b aria-hidden="true">↗</b>
+                        </article>}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section section--achievements section-wrap reveal" id="achievements">
+            <div class="achievement-intro">
+                <div class="achievement-intro__copy">
+                    <p class="eyebrow">07 / Achievements</p>
+                    <h2>Think deeper.<br /><em>Ship smarter.</em></h2>
+                    <p>ICPC is a team-based programming competition focused on algorithmic problem solving. That
+                        experience
+                        sharpened my ability to model complex challenges, reason about edge cases and build efficient
+                        solutions under pressure.</p>
+                </div>
+                <img class="achievement-intro__logo" src="images/acm-icpc-logo.svg" alt="ACM ICPC logo" />
+            </div>
+            <div class="achievement-list">@for (achievement of achievements; track achievement.event) {<article
+                    class="achievement" tabindex="0"><span class="achievement__year">{{ achievement.year }}</span>
+                    <div>
+                        <h3>{{ achievement.title }}</h3>
+                        <p>{{ achievement.event }}</p><small>{{ achievement.description }}</small>
+                    </div>
+                </article>}</div>
+        </section>
+        <section class="contact section-wrap reveal" id="contact">
+            <div class="contact__main">
+                <p class="eyebrow">08 / Start a conversation</p>
+                <h2>Have a problem<br />worth <em>solving?</em></h2>
+                <a class="contact__email" href="mailto:yigaelzero&#64;gmail.com">yigaelzero&#64;gmail.com
+                    <span>↗</span></a>
+            </div>
+            <div class="contact__details">
+                <div><span>Email</span><a href="mailto:yigaelzero&#64;gmail.com">yigaelzero&#64;gmail.com</a></div>
+                <div><span>Location / language</span>
+                    <p>Bolivia · English · Español</p>
+                </div>
+                <div class="contact__actions">
+                    <a href="mailto:yigaelzero&#64;gmail.com" class="button button--primary">Email me <span>↗</span></a>
+                    <a href="https://www.linkedin.com/in/yigael-balderrama/" class="button button--ghost"
+                        target="_blank" rel="noopener noreferrer"><svg class="button__icon" viewBox="0 0 24 24"
+                            aria-hidden="true"><path
+                                d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.34 17.34V9.67H5.79v7.67h2.55M7.06 8.62a1.48 1.48 0 1 0 0-2.96 1.48 1.48 0 0 0 0 2.96m10.28 8.72v-4.21c0-2.26-1.21-3.31-2.82-3.31-1.3 0-1.88.71-2.2 1.21V9.67H9.77v7.67h2.55v-3.8c0-1 .19-1.98 1.44-1.98 1.23 0 1.25 1.15 1.25 2.05v3.73h2.33Z" /></svg>LinkedIn <span
+                            aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/YigaelBalderrama" class="button button--ghost" target="_blank"
+                        rel="noopener noreferrer"><svg class="button__icon" viewBox="0 0 24 24"
+                            aria-hidden="true"><path
+                                d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 7.01c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" /></svg>GitHub <span
+                            aria-hidden="true">↗</span></a>
+                    <a href="/Yigael_Balderrama_CV_2026.pdf" class="button button--ghost"
+                        download="Yigael_Balderrama_CV_2026.pdf">Download CV <span aria-hidden="true">↓</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer"><span>© 2026 Yigael Alejandro Balderrama Barriga</span><span>Designed & built with
+            Angular <b>✦</b></span><a href="#home" (click)="scrollTo('home')">Back to top ↑</a></footer>
 </div>
