@@ -5,6 +5,9 @@
     --muted: #a8a8a8;
     --cyan: #e10600;
     --coral: #ff3b30;
+    --title-red: var(--coral);
+    --title-red-highlight: var(--paper);
+    --code-red: #d23b42;
     --line: rgba(255, 255, 255, .14);
     display: block;
     background: var(--ink);
@@ -258,11 +261,12 @@ p {
 }
 
 .hero__title {
-    font-family: 'DM Serif Display', serif;
+    color: var(--title-red);
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(2.4rem, 6.5vw, 6.5rem);
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: .01em;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -.015em;
     line-height: 1.08;
     margin-bottom: 28px;
     max-width: 950px;
@@ -335,19 +339,19 @@ p {
 }
 
 .hero__title-first-name {
-    color: var(--cyan);
+    color: var(--title-red);
 }
 
 .hero__title-last-name {
-    color: var(--paper);
+    color: var(--title-red-highlight);
 }
 
 em {
-    color: var(--cyan);
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -.04em;
+    color: var(--title-red-highlight);
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -.015em;
 }
 
 .hero__role {
@@ -408,7 +412,8 @@ em {
 }
 
 .hero__code {
-    color: rgba(225, 6, 0, .55);
+    animation: code-intro 1s cubic-bezier(.2, .8, .2, 1) .35s both;
+    color: color-mix(in srgb, var(--code-red) 82%, transparent);
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     line-height: 1.6;
@@ -416,14 +421,34 @@ em {
 }
 
 .hero__code--one {
-    right: 8%;
-    top: 23%;
+    right: 4%;
+    top: -10px;
     transform: rotate(8deg);
 }
 
 .hero__code--two {
-    bottom: 17%;
-    right: 17%;
+    animation-delay: .58s;
+}
+
+@keyframes code-intro {
+    from {
+        clip-path: inset(0 100% 0 0);
+        filter: blur(5px);
+        opacity: 0;
+        translate: -52px 0;
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+        filter: blur(0);
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+.hero__code--two {
+    left: 3%;
+    top: 18px;
     transform: rotate(-12deg);
 }
 
@@ -477,21 +502,23 @@ em {
 
 .section::before,
 .contact::before {
-    background: rgba(225, 6, 0, .09);
-    border-left: 2px solid rgba(225, 6, 0, .5);
-    color: rgba(255, 59, 48, .65);
+    background: color-mix(in srgb, var(--code-red) 10%, transparent);
+    border-left: 2px solid color-mix(in srgb, var(--code-red) 72%, transparent);
+    color: color-mix(in srgb, var(--code-red) 86%, transparent);
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     letter-spacing: .03em;
     line-height: 1.8;
     max-width: 280px;
-    opacity: .9;
+    opacity: var(--code-enter-opacity, 0);
     padding: 14px 16px;
     pointer-events: none;
     position: absolute;
     right: 2%;
     text-align: left;
     top: 18%;
+    transform: translate3d(var(--code-enter-x, -520px), var(--code-parallax-y, 0), 0);
+    transition: opacity .08s linear, transform .08s linear;
     white-space: pre-wrap;
     z-index: 0;
 }
@@ -531,17 +558,26 @@ em {
 }
 
 .contact::before {
-    border-left-color: rgba(225, 6, 0, .6);
-    color: rgba(255, 59, 48, .68);
+    border-left-color: color-mix(in srgb, var(--code-red) 72%, transparent);
+    color: color-mix(in srgb, var(--code-red) 86%, transparent);
     content: 'def binary_search(items, target):\A    while low <= high:\A        mid = (low + high) // 2\A        return mid\A# found in O(log n)';
     top: 22%;
 }
 
+/* Keep decorative code inside the empty space above each section's content. */
+.section::before,
+.contact::before {
+    right: 42px;
+    top: 18px;
+}
+
 .section-heading h2,
 .contact h2 {
+    color: var(--title-red);
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(3rem, 6vw, 6.2rem);
-    font-weight: 500;
-    letter-spacing: -.065em;
+    font-weight: 700;
+    letter-spacing: -.025em;
     line-height: .92;
     margin-bottom: 0;
 }
@@ -1150,6 +1186,15 @@ em {
         padding-right: 24px;
     }
 
+    .section::before,
+    .contact::before {
+        display: none;
+    }
+
+    .hero__code {
+        display: none;
+    }
+
     .hero {
         gap: 50px;
         grid-template-columns: minmax(0, 1fr) minmax(230px, 310px);
@@ -1308,6 +1353,8 @@ em {
     *,
     *::before,
     *::after {
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
     }

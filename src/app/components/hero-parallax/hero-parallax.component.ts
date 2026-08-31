@@ -43,7 +43,7 @@ export class HeroParallaxComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly host: ElementRef<HTMLElement>) {
     effect(() => {
       const offset = this.scrollY();
-      this.heroOffset.set(Math.min(offset * 0.18, 150));
+      this.heroOffset.set(Math.min(offset * 0.12, 80));
       document.documentElement.style.setProperty(
         '--scroll-progress',
         `${Math.min(offset / 900, 1)}`,
@@ -54,6 +54,7 @@ export class HeroParallaxComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrollY.set(window.scrollY);
+    this.updateCodeParallax();
   }
 
   toggleMenu(): void {
@@ -86,6 +87,39 @@ export class HeroParallaxComponent implements AfterViewInit, OnDestroy {
     this.host.nativeElement
       .querySelectorAll('.reveal')
       .forEach((element) => this.observer?.observe(element));
+    this.updateCodeParallax();
+  }
+
+  private updateCodeParallax(): void {
+    const viewportCenter = window.innerHeight / 2;
+
+    this.host.nativeElement
+      .querySelectorAll<HTMLElement>('.section, .contact')
+      .forEach((section) => {
+        const bounds = section.getBoundingClientRect();
+        const sectionCenter = bounds.top + bounds.height / 2;
+        const entranceProgress = Math.max(
+          0,
+          Math.min(
+            1,
+            (window.innerHeight * 0.78 - bounds.top) /
+              (window.innerHeight * 0.42),
+          ),
+        );
+        const horizontalOffset =
+          -(1 - entranceProgress) * Math.min(520, window.innerWidth * 0.42);
+        const offset = Math.max(
+          -18,
+          Math.min(18, (viewportCenter - sectionCenter) * 0.035),
+        );
+
+        section.style.setProperty('--code-parallax-y', `${offset}px`);
+        section.style.setProperty('--code-enter-x', `${horizontalOffset}px`);
+        section.style.setProperty(
+          '--code-enter-opacity',
+          `${entranceProgress * 0.9}`,
+        );
+      });
   }
 
   ngOnDestroy(): void {
