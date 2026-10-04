@@ -6,29 +6,50 @@ import {
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Spring Boot REST API',
-    type: 'Personal backend project',
+    title: 'ChessApp',
+    type: 'Chess AI & online multiplayer',
     description:
-      'A Java and Spring Boot backend focused on REST API design, layered architecture, DTOs, validation, error handling and database integration.',
+      'A chess application with a local AI opponent and online multiplayer. A custom chess engine handles legal moves and game outcomes, while a Web Worker keeps AI search off the UI thread.',
     technologies: [
-      'Java',
-      'Spring Boot',
-      'REST APIs',
-      'JPA / Hibernate',
-      'PostgreSQL or MySQL',
-      'Swagger',
-      'Clean Architecture',
+      'Angular',
+      'TypeScript',
+      'Node.js',
+      'WebSockets',
+      'Web Workers',
     ],
     features: [
-      'CRUD endpoints',
-      'Layered architecture',
-      'DTO validation',
-      'Exception handling',
-      'API documentation with Swagger',
-      'Database persistence',
+      'Minimax search with alpha-beta pruning',
+      'Three AI difficulty levels',
+      'Server-validated online multiplayer',
+      'Move history, undo and keyboard controls',
     ],
-    projectUrl: '#',
-    codeUrl: '#',
+    projectUrl: 'https://chessapp-ocnf.onrender.com/',
+    image: {
+      src: 'images/chessapp-preview.png',
+      alt: 'ChessApp showing a wooden chessboard, move history and AI difficulty settings.',
+    },
+    codeUrl: 'https://github.com/YigaelBalderrama/ChessApp',
+  },
+  {
+    title: 'MTGCheck',
+    type: 'Computer vision & card recognition API',
+    description:
+      'A REST API that identifies multiple Magic: The Gathering cards from a single photo. It detects card boundaries, corrects perspective and reads card names with OCR to match them against Scryfall data.',
+    technologies: [
+      'Python',
+      'Flask',
+      'OpenCV',
+      'EasyOCR',
+      'SQLite',
+      'Docker',
+    ],
+    features: [
+      'Multi-card detection and perspective correction',
+      'Batch OCR and fuzzy card-name matching',
+      'Local Scryfall catalog and recognition caching',
+      'Swagger UI and OpenAPI documentation',
+    ],
+    codeUrl: 'https://github.com/YigaelBalderrama/MTGCheck',
   },
 ];
 

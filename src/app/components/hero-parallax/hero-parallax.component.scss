@@ -839,12 +839,31 @@ em {
 }
 
 .project-card__terminal {
-    bottom: 38px;
+    color: var(--paper);
     display: grid;
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     gap: 13px;
-    position: absolute;
+    line-height: 1.7;
+    margin: 90px 0 10px;
+    padding-left: 18px;
+    position: relative;
+}
+
+.project-card__preview {
+    display: block;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.project-card__preview img {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.project-card__visual--image .project-card__terminal {
+    margin-top: 24px;
 }
 
 .project-card__terminal strong {

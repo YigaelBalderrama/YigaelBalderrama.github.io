@@ -21,7 +21,8 @@ export interface Project {
   description: string;
   technologies: string[];
   features: string[];
-  projectUrl: string;
+  projectUrl?: string;
+  image?: { src: string; alt: string };
   codeUrl: string;
 }
 
